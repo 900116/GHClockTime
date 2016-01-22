@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_Layout">
+
+    <fragment
+        android:id="@+id/id_fragment_title"
+        android:name="com.example.yongchehui.ghclocktime.Base.TitleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        tools:layout="@layout/title_frag" />
+
+    <FrameLayout
+        android:id="@+id/id_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_fragment_title"
+        />
+</RelativeLayout>

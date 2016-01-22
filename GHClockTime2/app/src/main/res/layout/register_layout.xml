@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    >
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        android:id="@+id/r_userNameLayout"
+        >
+
+        <TextView
+            android:id="@+id/r_userNameTV"
+            style="@style/loginPageTVStyle"
+            android:text="用户名:"
+            />
+
+        <EditText
+            android:id="@+id/r_userNameET"
+            style="@style/loginPageETStyle"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/r_userNameLayout"
+        android:layout_below="@+id/r_userNameLayout"
+        android:orientation="horizontal"
+        android:id="@+id/r_pwdLayout"
+        android:layout_marginTop="30dp"
+        >
+
+        <TextView
+            android:id="@+id/r_pwdTV"
+            style="@style/loginPageTVStyle"
+            android:text="密码:"/>
+
+        <EditText
+            android:id="@+id/r_pwdET"
+            style="@style/loginPageETStyle"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/r_registerBtn"
+        style="@style/loginPageBtnStyle"
+        android:layout_below="@+id/r_pwdLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:onClick="registerClick_event"
+        android:text="注册"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 这里主要是设置形状，如长方形android:shape="rectangle" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <gradient
+        android:endColor="#444"
+        android:startColor="@color/darkgray"
+        android:angle="270"
+        />
+
+</shape>

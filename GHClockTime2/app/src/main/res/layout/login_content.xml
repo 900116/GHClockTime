@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        android:id="@+id/userNameLayout"
+        >
+
+        <TextView
+            android:id="@+id/userNameTV"
+            style="@style/loginPageTVStyle"
+            android:text="用户名:"
+            />
+
+        <EditText
+            android:id="@+id/userNameET"
+            style="@style/loginPageETStyle"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/userNameLayout"
+        android:layout_below="@+id/userNameLayout"
+        android:orientation="horizontal"
+        android:id="@+id/pwdLayout"
+        android:layout_marginTop="30dp"
+        >
+
+        <TextView
+            android:id="@+id/pwdTV"
+            style="@style/loginPageTVStyle"
+            android:text="密码:"/>
+
+        <EditText
+            android:id="@+id/pwdET"
+            style="@style/loginPageETStyle"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/loginBtn"
+        style="@style/loginPageBtnStyle"
+        android:layout_below="@+id/pwdLayout"
+        android:layout_alignLeft="@+id/pwdLayout"
+        android:layout_marginTop="30dp"
+        android:onClick="loginClick_event"
+        android:text="登录"
+        />
+
+    <Button
+        android:id="@+id/registerBtn"
+        style="@style/loginPageBtnStyle"
+        android:layout_alignRight="@+id/pwdLayout"
+        android:layout_alignTop="@+id/loginBtn"
+        android:onClick="registerClick_event"
+        android:text="注册"
+        />
+</RelativeLayout>
