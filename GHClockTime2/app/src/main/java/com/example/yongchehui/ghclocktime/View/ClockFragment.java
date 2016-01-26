@@ -24,6 +24,7 @@ public class ClockFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clock_frag, container, false);
         lv = (ListView)view.findViewById(R.id.clocklist);
+        lv.setAdapter(new ClockListAdapter(this.getActivity()));
         return view;
     }
 
