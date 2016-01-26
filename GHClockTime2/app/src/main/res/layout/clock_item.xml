@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clocklistItem"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:orientation="horizontal">
+
+    <com.example.yongchehui.ghclocktime.View.GHClockView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:showNumber="false"
+        app:showSPin="false"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/clocklistItem_clock"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/clocklistItem_clock"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:id="@+id/clocklistItem_time"
+            android:text="上午6:00"
+            android:textSize="20dip">
+        </TextView>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="工作日"
+            android:textSize="20dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/clocklistItem_type">
+        </TextView>
+    </LinearLayout>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        />
+</RelativeLayout>

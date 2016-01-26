@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GHClockView">
+        <attr name="showNumber" format="boolean"/>
+        <attr name="showSPin" format="boolean"/>
+    </declare-styleable>
+</resources>

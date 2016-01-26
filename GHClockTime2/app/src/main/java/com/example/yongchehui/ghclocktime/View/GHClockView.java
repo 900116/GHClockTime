@@ -1,18 +1,29 @@
 package com.example.yongchehui.ghclocktime.View;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.yongchehui.ghclocktime.R;
+
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by yongcheHui on 16/1/21.
  */
 public class GHClockView extends View {
+
+    //是否显示数字
+    public boolean showNumber = true;
+    //是否显示秒针
+    public boolean showSPin = true;
+    //显示时间
+    public Date date = null;
 
     public GHClockView(Context context)
     {
@@ -21,11 +32,15 @@ public class GHClockView extends View {
 
     public GHClockView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GHClockView);
+        showNumber = a.getBoolean(R.styleable.GHClockView_showNumber,true);
+        showSPin = a.getBoolean(R.styleable.GHClockView_showSPin,true);
     }
 
     public GHClockView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
 
     @Override
     public void onDraw(Canvas canvas) {
@@ -62,28 +77,40 @@ public class GHClockView extends View {
         {
             int length = (i % 5 == 0)?bigDegreeLenth:littleDegreeLenth;
             drawMinuteLine(dr,i,length,canvas,paint);
-            if (i % 15 == 0) drawHourText(dr-40,i/5,canvas,paint);
+            if (showNumber)
+            {
+                if (i % 15 == 0) drawHourText(dr-40,i/5,canvas,paint);
+            }
         }
 
+        int hour = 0,minute = 0,second = 0;
         Calendar cal = Calendar.getInstance();
-        int hour=cal.get(Calendar.HOUR);//小时
-        int minute=cal.get(Calendar.MINUTE);//分
-        int second=cal.get(Calendar.SECOND);//秒
+        if (date != null)
+        {
+            cal.setTime(date);
+        }
+
+        hour=cal.get(Calendar.HOUR);//小时
+        minute=cal.get(Calendar.MINUTE);//分
+        second=cal.get(Calendar.SECOND);//秒
 
         //时针
         int MLength = (int)(getWidth()/3.5);
         int HLength = (int)(MLength * 0.8);
-        int HWidth = 20;
+        int HWidth = half_w()/10;
         paint.setStrokeWidth(HWidth);
         paint.setColor(Color.WHITE);
 
         drawHourLine(HLength,hour,HLength,canvas,paint);
         drawMinuteLine(MLength,minute,MLength,canvas,paint);
 
-        int SWidth = 5;
-        int SLength = (int)(MLength*1.1);
-        paint.setStrokeWidth(SWidth);
-        drawMinuteLine(SLength,second,SLength,canvas,paint);
+        if (showSPin)
+        {
+            int SWidth = 5;
+            int SLength = (int)(MLength*1.1);
+            paint.setStrokeWidth(SWidth);
+            drawMinuteLine(SLength,second,SLength,canvas,paint);
+        }
     }
 
     private int half_w()
