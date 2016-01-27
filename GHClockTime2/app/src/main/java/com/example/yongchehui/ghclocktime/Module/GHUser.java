@@ -25,14 +25,14 @@ public class GHUser extends RealmObject {
 
     //用户id
     @PrimaryKey
-    private long objectID = -2;
+    private long userID = -2;
 
-    public void setObjectID(long objectID) {
-        this.objectID = objectID;
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 
-    public long getObjectID() {
-        return objectID;
+    public long getUserID() {
+        return userID;
     }
 
     public void setUserName(String userName) {
@@ -92,7 +92,7 @@ public class GHUser extends RealmObject {
         else
         {
             GHUser user = new GHUser(userName, GHStringUtils.MD5(passWord));
-            if (user.getObjectID() == -2) user.setObjectID(System.currentTimeMillis());
+            user.setUserID(System.currentTimeMillis());
             GHRealm.save(context,user);
         }
     }

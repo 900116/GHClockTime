@@ -33,6 +33,8 @@ public class Tabbar extends LinearLayout {
 
     public BaseTabbarDataSource dataSource = null;
 
+    private int lastTouchIndx = 0;
+
     public void setDataSource(BaseTabbarDataSource dataSource) {
         if (dataSource == this.dataSource) return;
         this.removeAllViews();
@@ -44,6 +46,10 @@ public class Tabbar extends LinearLayout {
             btn.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //如果点击跟上次一样的页面不变化
+                    if (touchI != lastTouchIndx) lastTouchIndx = touchI;
+                    else return;
+
                     Fragment obj = null;
                     Class fragClass = Tabbar.this.dataSource.tabbar_frag(Tabbar.this,touchI);
                     try {

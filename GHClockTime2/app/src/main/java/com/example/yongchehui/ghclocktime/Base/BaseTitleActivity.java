@@ -17,6 +17,8 @@ import com.example.yongchehui.ghclocktime.R;
  */
 public abstract class BaseTitleActivity  extends Activity{
     //标题栏
+    protected TitleFragment titleFragment = null;
+    //标题文字
     protected TextView titleView = null;
     //内容
     protected ContentFragment contentView = null;
@@ -43,6 +45,9 @@ public abstract class BaseTitleActivity  extends Activity{
         this.titleView = (TextView) this.findViewById(R.id.titleTV);
 
         FragmentManager fm = getFragmentManager();
+
+        this.titleFragment = (TitleFragment)fm.findFragmentById(R.id.id_fragment_title);
+
         FragmentTransaction transaction = fm.beginTransaction();
 
         this.contentView = new ContentFragment(this.getContentViewLayout());
