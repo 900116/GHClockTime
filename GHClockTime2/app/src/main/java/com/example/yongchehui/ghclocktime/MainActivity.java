@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.example.yongchehui.ghclocktime.Base.BaseTitleActivity;
 import com.example.yongchehui.ghclocktime.Module.GHUser;
+import com.example.yongchehui.ghclocktime.Utils.System;
 
 public class MainActivity extends BaseTitleActivity {
 
@@ -22,7 +23,7 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     protected void  initControlView(){
-        SharedPreferences settings = this.getSharedPreferences("loginState", 0);
+        SharedPreferences settings = System.loginSetting(this);
         boolean isLogin = settings.getBoolean("isLogin",false);
         if (isLogin){
             push(HomeActivity.class);

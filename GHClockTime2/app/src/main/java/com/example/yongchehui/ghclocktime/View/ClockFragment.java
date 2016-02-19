@@ -7,19 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.yongchehui.ghclocktime.Base.UpdateEventHandler;
+import com.example.yongchehui.ghclocktime.GHRealm;
 import com.example.yongchehui.ghclocktime.Module.GHUserClock;
 import com.example.yongchehui.ghclocktime.Module.GHUserClockType;
 import com.example.yongchehui.ghclocktime.R;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +27,7 @@ import java.util.List;
  * Created by yongcheHui on 16/1/22.
  */
 public class ClockFragment extends Fragment{
-    private ListView lv = null;
+    private SliderListView lv = null;
     private List<GHUserClock> clocks = null;
     private ClockListAdapter adapter = null;
 
@@ -36,7 +35,7 @@ public class ClockFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clock_frag, container, false);
-        lv = (ListView)view.findViewById(R.id.clocklist);
+        lv = (SliderListView)view.findViewById(R.id.clocklist);
         adapter = new ClockListAdapter(this);
         lv.setAdapter(adapter);
         clocks = GHUserClock.getClockList(this.getActivity());
@@ -81,15 +80,22 @@ public class ClockFragment extends Fragment{
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            //对listview布局
-            RelativeLayout item_layout = (RelativeLayout) layoutInflater.inflate(
-                    R.layout.clock_item, null);
-            GHUserClock clock = fragment.clocks.get(position);
+//            SliderView slideView = (SliderView) convertView;
+            // 这里是我们的item
+            RelativeLayout item_layout = (RelativeLayout) layoutInflater.inflate(R.layout.clock_item,  null );
+
+//            slideView =  new SliderView(fragment.getActivity());
+//            // 这里把item加入到slideView
+//            slideView.setContentView(item_layout);
+//            slideView.setOnSlideListener(null);
+
+            final GHUserClock clock = fragment.clocks.get(position);
+            Date date = clock.getTime();
+
             GHClockView clockView = (GHClockView) item_layout.findViewById(R.id.clocklistItem_clock);
-            clockView.date = clock.getTime();
+            clockView.date = date;
 
             TextView timeTV = (TextView) item_layout.findViewById(R.id.clocklistItem_time);
-            Date date = clock.getTime();
             SimpleDateFormat format = new SimpleDateFormat("a hh:mm");
             timeTV.setText(format.format(date));
 
@@ -98,7 +104,19 @@ public class ClockFragment extends Fragment{
 
             Switch sw = (Switch)item_layout.findViewById(R.id.clocklistItem_swtich);
             sw.setChecked(clock.isOpenState());
-            return item_layout;
+            sw.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    final  boolean tIsChecned = isChecked;
+                    GHRealm.update(fragment.getActivity(), new UpdateEventHandler() {
+                        @Override
+                        public void execute() {
+                            clock.setOpenState(tIsChecned);
+                        }
+                    });
+                }
+            });
+            return  item_layout;
         }
     }
 }

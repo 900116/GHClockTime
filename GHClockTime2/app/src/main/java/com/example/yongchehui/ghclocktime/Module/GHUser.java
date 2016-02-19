@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.example.yongchehui.ghclocktime.Base.UpdateEventHandler;
 import com.example.yongchehui.ghclocktime.GHRealm;
 import com.example.yongchehui.ghclocktime.Utils.GHStringUtils;
+import com.example.yongchehui.ghclocktime.Utils.System;
 
 import io.realm.Realm;
 import io.realm.RealmObject;
@@ -92,7 +93,7 @@ public class GHUser extends RealmObject {
         else
         {
             GHUser user = new GHUser(userName, GHStringUtils.MD5(passWord));
-            user.setUserID(System.currentTimeMillis());
+            user.setUserID(java.lang.System.currentTimeMillis());
             GHRealm.save(context,user);
         }
     }
@@ -106,7 +107,7 @@ public class GHUser extends RealmObject {
         }
         else
         {
-            SharedPreferences settings = context.getSharedPreferences("loginState", 0);
+            SharedPreferences settings = System.loginSetting(context);
             SharedPreferences.Editor edt = settings.edit();
             edt.putBoolean("isLogin",true);
             edt.commit();
@@ -114,7 +115,7 @@ public class GHUser extends RealmObject {
             GHRealm.update(context,new UpdateEventHandler() {
                 @Override
                 public void execute() {
-                    user.setFinalLogintime(System.currentTimeMillis());
+                    user.setFinalLogintime(java.lang.System.currentTimeMillis());
                 }
             });
             return true;

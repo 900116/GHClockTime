@@ -7,11 +7,42 @@
     android:id="@+id/home_root"
     tools:context=".HomeActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="天气晴 24度"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/home_weather"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="空气质量 重度雾霾"
+        android:textSize="20dp"
+        android:layout_below="@+id/home_weather"
+        android:layout_alignLeft="@+id/home_weather"
+        android:id="@+id/home_air"
+        />
+
     <com.example.yongchehui.ghclocktime.View.GHClockView
         android:id="@+id/clockView"
         android:layout_width="210dp"
         android:layout_height="210dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/home_date"
+        android:textSize="28dp"
+        android:text="2016年03月22日 星期五"
         />
 </RelativeLayout>

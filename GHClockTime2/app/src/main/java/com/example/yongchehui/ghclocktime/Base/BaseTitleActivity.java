@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.yongchehui.ghclocktime.R;
 
+import java.lang.reflect.Constructor;
+
 /**
  * Created by yongcheHui on 16/1/20.
  * 带有导航栏的Activity
@@ -35,6 +37,10 @@ public abstract class BaseTitleActivity  extends Activity{
      * */
     protected abstract void  initControlView();
 
+    protected Class contentFragmentClass(){
+        return ContentFragment.class;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +54,18 @@ public abstract class BaseTitleActivity  extends Activity{
 
         this.titleFragment = (TitleFragment)fm.findFragmentById(R.id.id_fragment_title);
 
-        FragmentTransaction transaction = fm.beginTransaction();
+        try{
+            FragmentTransaction transaction = fm.beginTransaction();
+            Class fragClass = contentFragmentClass();
+            Constructor<ContentFragment> con = fragClass.getConstructor(Integer.class);
+            this.contentView = (ContentFragment) con.newInstance(getContentViewLayout());
+            transaction.replace(R.id.id_fragment_content, this.contentView);
+            transaction.commit();
+        }
+        catch (Exception e)
+        {
 
-        this.contentView = new ContentFragment(this.getContentViewLayout());
-        transaction.replace(R.id.id_fragment_content, this.contentView);
-        transaction.commit();
+        }
     }
 
     /**

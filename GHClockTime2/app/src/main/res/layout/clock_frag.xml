@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <ListView
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
+    <com.example.yongchehui.ghclocktime.View.SliderListView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:id="@+id/clocklist"
         />
 </LinearLayout>

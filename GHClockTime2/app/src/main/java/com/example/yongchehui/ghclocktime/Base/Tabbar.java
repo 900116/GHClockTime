@@ -56,7 +56,7 @@ public class Tabbar extends LinearLayout {
                         FragmentManager fm = ((Activity)Tabbar.this.getContext()).getFragmentManager();
                         // 开启Fragment事务
                         FragmentTransaction transaction = fm.beginTransaction();
-                        if (fragClass == ContentFragment.class)
+                        if (touchI == 0)
                         {
                             Integer layoutID = Tabbar.this.dataSource.contentLayoutID(Tabbar.this);
                             Constructor<ContentFragment> con = fragClass.getConstructor(Integer.class);

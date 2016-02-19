@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 /**
  * Created by yongcheHui on 16/1/20.
  */
 public class ContentFragment extends Fragment{
-    private Integer viewLayout = 0;
+    protected Integer viewLayout = 0;
+    protected RelativeLayout rootView = null;
 
     public ContentFragment(Integer viewLayout) {
         this.viewLayout = viewLayout;
@@ -19,8 +21,8 @@ public class ContentFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(this.viewLayout, container, false);
-        return view;
+        rootView = (RelativeLayout) inflater.inflate(this.viewLayout, container, false);
+        return rootView;
     }
 
     @Override

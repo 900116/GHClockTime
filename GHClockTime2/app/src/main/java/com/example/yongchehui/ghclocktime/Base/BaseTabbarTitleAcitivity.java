@@ -29,6 +29,7 @@ public abstract class BaseTabbarTitleAcitivity  extends BaseTitleActivity{
 
         fl = (FrameLayout)findViewById(R.id.id_fragment_content);
         RelativeLayout.LayoutParams contentParams = (RelativeLayout.LayoutParams)fl.getLayoutParams();
+        contentParams.addRule(RelativeLayout.ABOVE,1);
         fl.setLayoutParams(contentParams);
     }
 

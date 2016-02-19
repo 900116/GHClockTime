@@ -18,6 +18,7 @@ import com.example.yongchehui.ghclocktime.Base.Tabbar;
 import com.example.yongchehui.ghclocktime.Module.GHUserClock;
 import com.example.yongchehui.ghclocktime.Module.GHUserClockType;
 import com.example.yongchehui.ghclocktime.View.ClockFragment;
+import com.example.yongchehui.ghclocktime.View.HomeFragment;
 import com.example.yongchehui.ghclocktime.View.TimeClockFragment;
 
 import java.util.Calendar;
@@ -48,11 +49,15 @@ public class HomeActivity extends BaseTabbarTitleAcitivity implements BaseTabbar
 
     public Class tabbar_frag(Tabbar tabbar, int index)
     {
-        if (index == 0) return ContentFragment.class;
+        if (index == 0) return HomeFragment.class;
         else if (index == 1) return ClockFragment.class;
         else return TimeClockFragment.class;
     }
 
+    @Override
+    protected Class contentFragmentClass() {
+        return HomeFragment.class;
+    }
 
     private int lastTouch = 0;
 
@@ -64,7 +69,7 @@ public class HomeActivity extends BaseTabbarTitleAcitivity implements BaseTabbar
 
     @Override
     protected void  initControlView(){
-        setTitle("主页");
+        setTitle("时间");
         if (tab.dataSource == null) tab.setDataSource(this);
     }
 
